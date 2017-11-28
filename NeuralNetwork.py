@@ -21,9 +21,9 @@ class NN(object):
     
     def initWeights(self):
         w1 = np.sqrt(2.0/784)*np.random.normal(loc = 0.0, scale = 1.0, size = (50, 784))
-        w1 = np.concatenate((0.01*np.ones((50, 1)), w1), axis = 1)#50x785
+        w1 = np.concatenate((0.01*np.ones((50, 1)), w1), axis = 1)
         w2 = np.sqrt(2.0/50)*np.random.normal(loc = 0.0, scale = 1.0, size = (10, 50))
-        w2 = np.concatenate((0.01*np.ones((10, 1)), w2), axis = 1)#10x26
+        w2 = np.concatenate((0.01*np.ones((10, 1)), w2), axis = 1)
         return (w1, w2)
     
     def trainNN(self, w1, w2):
@@ -53,17 +53,17 @@ class NN(object):
         while loss > 0.01:
             
             #Regularization Terms
-            reg1 = np.copy(w1)#25x785
-            reg1[:, 0] = 0#25x785
+            reg1 = np.copy(w1)
+            reg1[:, 0] = 0
             reg1s = np.sum(np.square(reg1))
-            reg2 = np.copy(w2)#10x26
-            reg2[:, 0] = 0#10x26
+            reg2 = np.copy(w2)
+            reg2[:, 0] = 0
             reg2s = np.sum(np.square(reg2))
             
             #Forward Pass on Training Set
-            a = np.dot(self.X, w1.T)#mx785, 785x25 = mx25
-            score1[:, 1:] = self.sigmoid(a)#mx25
-            b = np.dot(score1, w2.T)#mx26, 26x10 = mx10
+            a = np.dot(self.X, w1.T)
+            score1[:, 1:] = self.sigmoid(a)
+            b = np.dot(score1, w2.T)
             score2 = self.sigmoid(b)
             
             #Forward Pass on CV Set
@@ -80,11 +80,11 @@ class NN(object):
             lossCross = self.lossFunc(score2Cross, mCross, self.yCross)
             
             #RMSProp
-            grad2 = (-1*(self.y - score2))#mx10
-            dw2 = np.dot(grad2.T, score1) + ((lam/(m))*reg2)#10xm, mx26 = 10x26#
-            grad1 = np.dot(grad2, w2[:, 1:])#mx10, 10x25 = mx25
-            grad0 = grad1 * score1[:, 1:] *(1 - score1[:, 1:])#mx25, mx25
-            dw1 = np.dot(grad0.T, self.X) + ((lam/(m))*reg1)#25xm, mx785 = 25x785
+            grad2 = (-1*(self.y - score2))
+            dw2 = np.dot(grad2.T, score1) + ((lam/(m))*reg2)
+            grad1 = np.dot(grad2, w2[:, 1:])
+            grad0 = grad1 * score1[:, 1:] *(1 - score1[:, 1:])
+            dw1 = np.dot(grad0.T, self.X) + ((lam/(m))*reg1)
             
             #Weight Update
             cache1 = decay_rate*cache1 + (1 - decay_rate) * dw1**2
@@ -128,9 +128,9 @@ class NN(object):
         m = self.XCross.shape[0]
         score1 = np.zeros((m, 50))
         score1 = np.concatenate((np.ones((m, 1)), score1), axis = 1)
-        a = np.dot(self.XCross, w1.T)#mx785, 785x25 = mx25
-        score1[:, 1:] = self.sigmoid(a)#mx25
-        b = np.dot(score1, w2.T)#mx26, 26x10 = mx10
+        a = np.dot(self.XCross, w1.T)
+        score1[:, 1:] = self.sigmoid(a)
+        b = np.dot(score1, w2.T)
         score2 = self.sigmoid(b)
         pred = np.argmax(score2, axis = 1)
         val = np.zeros((m, 1))
