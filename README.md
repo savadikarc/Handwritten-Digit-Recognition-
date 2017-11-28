@@ -2,7 +2,7 @@
 
 I used the MNIST handwritten digit dataset.
 
-The image is of size 28x28, which is stored as a row vector in a .mat file. A total of 10000 iamges (1000 of each digit) are divided into Training Set (5000), Cross Validation Set (3000), and Test Set (2000).
+The image is of size 28x28, which is stored as a row vector in a .mat file. A total of 10000 images (1000 of each digit) are divided into Training Set (5000), Cross Validation Set (3000), and Test Set (2000).
 
 Specifications of FNN:
 
