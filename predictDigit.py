@@ -25,11 +25,3 @@ print(lam)
 net = NeuralNetwork.NN(XCross = X, y1Cross = y1)
 (prediction, acc) = net.forwardPass(w1, w2)
 print('Accuracy', acc, sep = ' ')
-'''
-for i in range(m):
-    val[i] = pred[i] == y1[i]
-#print(val)
-(row, col) = np.nonzero(val)
-acc = (len(row)/m)*100
-print(acc)
-'''
