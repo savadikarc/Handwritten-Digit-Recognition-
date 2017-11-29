@@ -1,18 +1,17 @@
-# Handwritten-Digit Recognition
+# Handwritten-Digit Recognition (MNIST handwritten digit dataset.)
 
-I used the MNIST handwritten digit dataset.
+--Python version 3.4.3
 
-The image is of size 28x28, which is stored as a row vector in a .mat file. A total of 10000 images (1000 of each digit) are divided into Training Set (5000), Cross Validation Set (3000), and Test Set (2000).
+--numpy version 1.11.2
 
-Specifications of FNN:
+--scipy version 0.16.1
 
- 1. Number of input units - 784 + bias = 785.
- 2. Number of hidden layer(s) - 1 having 50 neurons.
- 3. Number of output classes - 10 each class corresponding to a digit.
+--matplotlib version 1.5.3
+
  
 main.py contains the script to be run.
 
-NeuralNetwork contains the class NN for the FNN.
+NeuralNetwork contains the class NN for the fully connected neural network.
 
 predictDigit.py contains the code to check the prediction accuracy on any datadet specified in the 'loadmat' function.
 
